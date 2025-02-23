@@ -17,7 +17,6 @@ interface EventConfirmationModalProps {
   onClose: () => void;
   eventDetails: EventDetails;
   onConfirm: (updatedDetails: EventDetails) => Promise<void>;
-  onShare?: (email: string) => Promise<void>;
 }
 
 // Create a custom TextInput component that extends the Tremor one
@@ -79,7 +78,6 @@ export function EventConfirmationModal({
   onClose,
   eventDetails,
   onConfirm,
-  onShare,
 }: EventConfirmationModalProps) {
   const [details, setDetails] = useState(eventDetails);
 

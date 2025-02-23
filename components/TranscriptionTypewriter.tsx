@@ -40,7 +40,6 @@ export const TranscriptionTypewriter = ({
 
     setIsTyping(true);
     const words = text.split(" ");
-    const currentWords = displayText.split(" ").length;
 
     const typeNextWord = () => {
       setDisplayText((prev) => {
@@ -55,11 +54,7 @@ export const TranscriptionTypewriter = ({
 
     const timer = setInterval(typeNextWord, 50);
     return () => clearInterval(timer);
-  }, [text, isRecording]);
-
-  useEffect(() => {
-    setDisplayText(text);
-  }, [text]);
+  }, [text, isRecording, displayText]);
 
   const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const newText = e.target.value;

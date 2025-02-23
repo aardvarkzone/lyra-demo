@@ -100,10 +100,6 @@ const VoiceToCalendar = () => {
     }
   };
 
-  const handleShareEvent = async (email: string): Promise<void> => {
-    console.log("Sharing event to:", email);
-  };
-
   const removeHistoryItem = (id: string): void => {
     const newHistory = history.filter((item) => item.id !== id);
     saveHistory(newHistory);
@@ -387,7 +383,6 @@ const VoiceToCalendar = () => {
           onClose={() => setShowConfirmation(false)}
           eventDetails={pendingEventDetails}
           onConfirm={handleConfirmEvent}
-          onShare={handleShareEvent}
         />
       )}
     </div>
