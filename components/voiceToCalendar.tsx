@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { Card, Button, Textarea, Text } from "@tremor/react";
+import { Button, Text } from "@tremor/react";
 import { createICSFile } from "../services/generateICSfile";
 import { generateEventDetails } from "../services/generateEventDetails";
 import EventHistory from "./EventHistory";

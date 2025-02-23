@@ -9,7 +9,6 @@ import {
   Textarea,
 } from "@tremor/react";
 import { useState } from "react";
-import { showSuccessToast } from "@/components/ui/Toast";
 import { motion, AnimatePresence } from "framer-motion";
 import { EventDetails } from "../types/event";
 

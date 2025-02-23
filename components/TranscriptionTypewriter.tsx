@@ -40,19 +40,21 @@ export const TranscriptionTypewriter = ({
 
     setIsTyping(true);
     const words = text.split(" ");
-    let currentIndex = displayText.split(" ").length - 1;
+    const currentWords = displayText.split(" ").length;
 
     const typeNextWord = () => {
-      if (currentIndex < words.length) {
-        setDisplayText(words.slice(0, currentIndex + 1).join(" "));
-        currentIndex++;
-        setTimeout(typeNextWord, 50);
-      } else {
+      setDisplayText((prev) => {
+        const nextWordCount = prev.split(" ").length;
+        if (nextWordCount < words.length) {
+          return words.slice(0, nextWordCount + 1).join(" ");
+        }
         setIsTyping(false);
-      }
+        return prev;
+      });
     };
 
-    typeNextWord();
+    const timer = setInterval(typeNextWord, 50);
+    return () => clearInterval(timer);
   }, [text, isRecording]);
 
   useEffect(() => {
