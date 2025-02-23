@@ -1,7 +1,13 @@
 "use client";
 
 import { Dialog } from "@headlessui/react";
-import { Card, Text, Button, TextInput as TremorTextInput, Textarea } from "@tremor/react";
+import {
+  Card,
+  Text,
+  Button,
+  TextInput as TremorTextInput,
+  Textarea,
+} from "@tremor/react";
 import { useState } from "react";
 import { showSuccessToast } from "@/components/ui/Toast";
 import { motion, AnimatePresence } from "framer-motion";
@@ -12,11 +18,13 @@ interface EventConfirmationModalProps {
   onClose: () => void;
   eventDetails: EventDetails;
   onConfirm: (updatedDetails: EventDetails) => Promise<void>;
-  onShare: (email: string) => Promise<void>;
+  onShare?: (email: string) => Promise<void>;
 }
 
 // Create a custom TextInput component that extends the Tremor one
-const TextInput = TremorTextInput as React.ComponentType<React.ComponentProps<'input'>>;
+const TextInput = TremorTextInput as React.ComponentType<
+  React.ComponentProps<"input">
+>;
 
 /**
  * Modal component for confirming and editing event details
@@ -54,7 +62,9 @@ const formatDateTime = (dateArr: number[] | undefined) => {
   )}T${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}`;
 };
 
-const parseDateTimeToArray = (dateTimeString: string): [number, number, number, number, number] => {
+const parseDateTimeToArray = (
+  dateTimeString: string
+): [number, number, number, number, number] => {
   const date = new Date(dateTimeString);
   return [
     date.getFullYear(),

@@ -55,6 +55,10 @@ export const TranscriptionTypewriter = ({
     typeNextWord();
   }, [text, isRecording]);
 
+  useEffect(() => {
+    setDisplayText(text);
+  }, [text]);
+
   const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const newText = e.target.value;
     setDisplayText(newText);

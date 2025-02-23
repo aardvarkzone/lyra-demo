@@ -14,9 +14,18 @@ import { EventDetails } from "../types/event";
 
 declare global {
   interface Window {
-    webkitSpeechRecognition: any;
-    SpeechRecognition: any;
+    webkitSpeechRecognition: new () => SpeechRecognition;
+    SpeechRecognition: new () => SpeechRecognition;
   }
+}
+
+interface SpeechRecognition {
+  continuous: boolean;
+  interimResults: boolean;
+  onresult: (event: SpeechRecognitionEvent) => void;
+  onend: () => void;
+  start: () => void;
+  stop: () => void;
 }
 
 interface SpeechRecognitionEvent {
@@ -31,8 +40,6 @@ interface SpeechRecognitionEvent {
     };
   };
 }
-
-type SpeechRecognition = any;
 
 interface HistoryItem {
   id: string;
@@ -50,7 +57,6 @@ interface HistoryItem {
 const VoiceToCalendar = () => {
   const [transcription, setTranscription] = useState<string>("");
   const [recording, setRecording] = useState<boolean>(false);
-  const [downloadLink, setDownloadLink] = useState<string>("");
   const [history, setHistory] = useState<HistoryItem[]>([]);
   const [recognition, setRecognition] = useState<SpeechRecognition | null>(
     null
@@ -64,8 +70,6 @@ const VoiceToCalendar = () => {
     useState<EventDetails | null>(null);
   const [accumulatedTranscript, setAccumulatedTranscript] =
     useState<string>("");
-
-  // ... rest of the component remains the same, just add type annotations where needed ...
 
   const saveHistory = (newHistory: HistoryItem[]): void => {
     localStorage.setItem("eventHistory", JSON.stringify(newHistory));
@@ -88,7 +92,6 @@ const VoiceToCalendar = () => {
 
       const newHistory = [historyItem, ...history];
       saveHistory(newHistory);
-      setDownloadLink(downloadUrl);
       setShowConfirmation(false);
       showSuccessToast("Event created successfully!");
     } catch (error) {
@@ -98,7 +101,7 @@ const VoiceToCalendar = () => {
   };
 
   const handleShareEvent = async (email: string): Promise<void> => {
-    // ... existing code ...
+    console.log("Sharing event to:", email);
   };
 
   const removeHistoryItem = (id: string): void => {
@@ -106,9 +109,7 @@ const VoiceToCalendar = () => {
     saveHistory(newHistory);
   };
 
-  // Speech recognition setup and management
   useEffect(() => {
-    // Load history from localStorage on mount
     const savedHistory = localStorage.getItem("eventHistory");
     if (savedHistory) {
       setHistory(JSON.parse(savedHistory));
@@ -134,7 +135,9 @@ const VoiceToCalendar = () => {
             }
           }
           setInterimTranscript(currentInterimTranscript);
-          setTranscription(accumulatedTranscript + " " + currentInterimTranscript);
+          setTranscription(
+            accumulatedTranscript + " " + currentInterimTranscript
+          );
         };
 
         recognition.onend = () => {
@@ -148,7 +151,6 @@ const VoiceToCalendar = () => {
     }
   }, [recording, accumulatedTranscript]);
 
-  // Handles starting voice recording
   const startRecording = async (): Promise<void> => {
     try {
       if (recognition) {
