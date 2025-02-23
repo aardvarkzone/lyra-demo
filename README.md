@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🗣️ DictaCal
 
-## Getting Started
+A voice-powered calendar event creator built with Next.js 14, OpenAI Whisper, and GPT-3.5. Create calendar events naturally through voice or text.
 
-First, run the development server:
+## 🌟 Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- 🎙️ Voice-to-text transcription using OpenAI Whisper
+- 🤖 Natural language processing with GPT-3.5
+- 📅 ICS file generation for calendar events
+- 🌓 Dark/Light mode support
+- 💾 Local storage for event history
+- ⚡ Real-time transcription with typewriter effect
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Future Enhancements
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Google Calendar Integration
+- Direct event creation in Google Calendar
+- Fetch and display existing calendar events
+- Check for scheduling conflicts
+- Multi-calendar support
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Enhanced Sharing
+- Email invitations with ICS attachments
+- Share events via unique links
+- Team collaboration features
+- Integration with messaging platforms
 
-## Learn More
+### Smart Scheduling (inspired by Schedjit)
+- AI-powered scheduling suggestions
+- Availability detection
+- Recurring event patterns
+- Time zone handling
 
-To learn more about Next.js, take a look at the following resources:
+### UI/UX Improvements
+- Customizable themes
+- Animations and transitions
+- Mobile-first responsive design
+- Accessibility enhancements
+- Voice command shortcuts
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 💡 Background
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+DictaCal was created in under 2 hours as a mini-version of Lyra's product. It serves as a proof of concept for voice-powered calendar management and demonstrates the potential of combining AI with productivity tools.
 
-## Deploy on Vercel
+## 🛠️ Tech Stack
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Next.js 14
+- TypeScript
+- Tailwind CSS
+- OpenAI (Whisper + GPT-3.5)
+- Framer Motion
+- Tremor UI
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🏃‍♂️ Getting Started
+
+1. Clone the repository
+2. Install dependencies: `npm install`
+3. Set up environment variables:
+   ```env
+   NEXT_PUBLIC_OPENAI_API_KEY=your_key_here
+   ```
+4. Run the development server: `npm run dev`
+5. Open [http://localhost:3000](http://localhost:3000)
+
+## 📝 License
+
+MIT
+
+## 🙏 Acknowledgments
+
+Inspired by Lyra's innovative approach to calendar management and productivity tools.

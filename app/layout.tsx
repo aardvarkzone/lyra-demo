@@ -1,7 +1,15 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "next-themes";
+import { ToastContainer } from "@/components/ui/Toast";
 
+/**
+ * Root layout component that wraps the entire application
+ * Handles font loading, theme provider setup, and toast notifications
+ */
+
+// Import custom fonts for the application
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -23,11 +31,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <ThemeProvider attribute="class" defaultTheme="system">
+          {children}
+          <ToastContainer />
+        </ThemeProvider>
       </body>
     </html>
   );
