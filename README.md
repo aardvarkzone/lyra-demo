@@ -38,6 +38,9 @@ A voice-powered calendar event creator built with Next.js 14, OpenAI Whisper, an
 - Accessibility enhancements
 - Voice command shortcuts
 
+### Slack API
+- https://vercel.com/templates/other/openai-gpt-slackbot-vercel-functions
+
 ## 💡 Background
 
 DictaCal was created in under 2 hours as a mini-version of Lyra's product. It serves as a proof of concept for voice-powered calendar management and demonstrates the potential of combining AI with productivity tools.
